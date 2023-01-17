@@ -17,7 +17,7 @@ public class UserService {
         this.passwordEncoder=passwordEncoder;
     }
 
-    public void createUser(User user){
+    public void createUser(User user) throws UserExisteException {
         var userEntity = new en.ensiteck.myresto.entity.User();
         if (userRepository.findById(user.login()).isPresent()){
             throw new UserExisteException();

@@ -22,7 +22,7 @@ class UserServiceTest {
     UserRepository userRepository;
 
     @Test
-    void checkIfPasswordWasEncrypt(){
+    void checkIfPasswordWasEncrypt() throws UserExisteException {
         var user = new User("userCreate","user","user","test");
         userService.createUser(user);
         var userBase = userRepository.findById("userCreate");

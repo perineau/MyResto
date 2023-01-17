@@ -12,6 +12,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -34,6 +35,24 @@ class UserControllerTest {
                         }
                         """).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    void createUserExist() throws Exception {
+        this.mockMvc.perform(post("/user").content("""
+                        {
+                        	"login":"admin",
+                        	"firstname":"qsdqsd",
+                        	"lastname":"qsdqsd",
+                        	"password":"qsdqsd"
+                        }
+                        """).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("""
+                        {
+                        "reason":"utilisateur deja existant"
+                        }
+                        """));
     }
 
 }
