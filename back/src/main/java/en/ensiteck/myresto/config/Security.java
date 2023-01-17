@@ -25,9 +25,11 @@ public class Security {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http)throws Exception{
-        return http.csrf().disable().authorizeHttpRequests().
-                requestMatchers(HttpMethod.GET,"/card").permitAll().
-                requestMatchers("/admin/**").hasRole("ADMIN")
+        return http.csrf().disable().authorizeHttpRequests()
+                .requestMatchers(HttpMethod.GET,"/card").permitAll()
+                .requestMatchers(HttpMethod.GET,"/user/create").permitAll()
+                .requestMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers("/error").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .userDetailsService(jpaUserDetailService)

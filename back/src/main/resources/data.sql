@@ -6,6 +6,6 @@ INSERT INTO product (id_product, name, price, type) VALUES
 (5,	'paté',	2,	'ENTRY'),
 (6,	'coca cola',	3.99,	'DRINK');
 
-INSERT INTO user_resto (admin, birthday, firstname, lastname, login, password)
-VALUES ('0', '2023-01-17', 'test', 'test', 'test', '$2y$10$H9KrDMnXt47q3JsM1kr32uSrfDjfyzMwThxCtEcnJX5oXdlqc/XFS'),
-('1', '2023-01-17', 'admin', 'admin', 'admin', '$2y$10$t9CyLKjl3HFZWYXQ51mmXuPFd1iu5D6rMIHSKMTBv0ZJZvNkQ9jTi');
+INSERT INTO user_resto (admin, firstname, lastname, login, password)
+VALUES ('0', 'test', 'test', 'test', '$2y$10$H9KrDMnXt47q3JsM1kr32uSrfDjfyzMwThxCtEcnJX5oXdlqc/XFS'),
+('1', 'admin', 'admin', 'admin', '$2y$10$t9CyLKjl3HFZWYXQ51mmXuPFd1iu5D6rMIHSKMTBv0ZJZvNkQ9jTi');

@@ -11,10 +11,6 @@ import java.util.Date;
 public class User {
 
     @Id
-    @Column(name="idUser")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @Column(name="login")
     private String login;
 
@@ -23,9 +19,6 @@ public class User {
 
     @Column(name="lastname")
     private String lastname;
-
-    @Column(name="birthday")
-    private Date birthday;
 
     @Column(name="password")
     private String password;
