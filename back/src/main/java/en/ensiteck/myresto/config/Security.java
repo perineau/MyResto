@@ -49,9 +49,9 @@ public class Security {
     }
 
     @Bean
-    public CorsConfigurationSource corsFilter() {
+    public CorsFilter corsFilter() {
         var source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
-        return source;
+        return new CorsFilter(source);
     }
 }
