@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -25,7 +26,7 @@ public class Security {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http)throws Exception{
-        return http.csrf().disable().authorizeHttpRequests()
+        return http.csrf().disable().cors(AbstractHttpConfigurer::disable).authorizeHttpRequests()
                 .requestMatchers(HttpMethod.GET,"/card").permitAll()
                 .requestMatchers(HttpMethod.GET,"/user/create").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
