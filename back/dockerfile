@@ -7,5 +7,5 @@ COPY ./ ./
 RUN mvn package
 
 FROM openjdk:17-jdk-alpine
-copy --from=0 /app/target/*.jar ./
+copy --from=0 /app/target/*.jar ./app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
