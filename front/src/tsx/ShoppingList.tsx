@@ -11,6 +11,8 @@ export type ProductShopping = {
 
 type ShoppingListProps = {
   products: ProductShopping;
+  onAdd:(product:Product)=>void
+  onRemove:(product:Product)=>void
 }
 
 type ShoppingListState = {
@@ -32,10 +34,10 @@ export class ShoppingList extends React.Component<ShoppingListProps, ShoppingLis
             return(
               <div>
                 <span>{shoppingList[key].product.name}</span>
-                <span>{shoppingList[key].product.price * shoppingList[key].qte}€</span>
-                <button>+</button>
+                <span>{(shoppingList[key].product.price * shoppingList[key].qte).toFixed(2)}€</span>
+                <button onClick={()=>{this.props.onAdd(shoppingList[key].product)}}>+</button>
                 <span>{shoppingList[key].qte}</span>
-                <button>-</button>
+                <button onClick={()=>{this.props.onRemove(shoppingList[key].product)}}>-</button>
               </div>
             )
           })

@@ -34,7 +34,7 @@ export class Menu extends React.Component<MenuProps,MenuState> {
         <Section type={ProductType.DESSERT} products={products.filter((v) => { return v.type == ProductType.DESSERT; })} onAdd={this.addProductToShoppingList.bind(this)}></Section>
         <Section type={ProductType.DRINK} products={products.filter((v) => { return v.type == ProductType.DRINK; })} onAdd={this.addProductToShoppingList.bind(this)}></Section>
 
-        <ShoppingList products={this.state.productsShopping}></ShoppingList>
+        <ShoppingList products={this.state.productsShopping} onAdd={this.addProductToShoppingList.bind(this)} onRemove={this.removeProductToShoppingList.bind(this)}></ShoppingList>
       </div>
     );
   }
