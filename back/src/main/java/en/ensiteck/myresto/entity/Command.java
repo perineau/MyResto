@@ -19,4 +19,7 @@ public class Command {
     @ManyToMany
     private List<Product> idProduct;
 
+    @ManyToOne
+    private User user;
+
 }

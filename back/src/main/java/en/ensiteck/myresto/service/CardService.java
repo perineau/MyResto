@@ -1,7 +1,7 @@
 package en.ensiteck.myresto.service;
 
 import en.ensiteck.myresto.dto.Card;
-import en.ensiteck.myresto.dto.Product;
+import en.ensiteck.myresto.dto.ProductReturn;
 import en.ensiteck.myresto.entity.ProductType;
 import en.ensiteck.myresto.repository.ProductRepository;
 import org.springframework.stereotype.Service;
@@ -18,10 +18,10 @@ public class CardService {
 
     public Card getCard(){
         var product = productRepository.findAll();
-        return new Card(product.stream().filter(product1 -> product1.getType() == ProductType.ENTRY).map(Product::fromEntity).collect(Collectors.toList()),
-                product.stream().filter(product1 -> product1.getType() == ProductType.MAIN).map(Product::fromEntity).collect(Collectors.toList()),
-                product.stream().filter(product1 -> product1.getType() == ProductType.DESSERT).map(Product::fromEntity).collect(Collectors.toList()),
-                product.stream().filter(product1 -> product1.getType() == ProductType.DRINK).map(Product::fromEntity).collect(Collectors.toList())
+        return new Card(product.stream().filter(product1 -> product1.getType() == ProductType.ENTRY).map(ProductReturn::fromEntity).collect(Collectors.toList()),
+                product.stream().filter(product1 -> product1.getType() == ProductType.MAIN).map(ProductReturn::fromEntity).collect(Collectors.toList()),
+                product.stream().filter(product1 -> product1.getType() == ProductType.DESSERT).map(ProductReturn::fromEntity).collect(Collectors.toList()),
+                product.stream().filter(product1 -> product1.getType() == ProductType.DRINK).map(ProductReturn::fromEntity).collect(Collectors.toList())
         );
     }
 }

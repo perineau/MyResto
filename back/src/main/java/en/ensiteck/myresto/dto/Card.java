@@ -2,4 +2,4 @@ package en.ensiteck.myresto.dto;
 
 import java.util.List;
 
-public record Card (List<Product> entry,List<Product> main,List<Product> dessert,List<Product> drink){}
+public record Card (List<ProductReturn> entry, List<ProductReturn> main, List<ProductReturn> dessert, List<ProductReturn> drink){}
