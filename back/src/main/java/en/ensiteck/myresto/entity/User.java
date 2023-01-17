@@ -15,6 +15,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name="login")
+    private String login;
+
     @Column(name="firstname")
     private String firstname;
 
@@ -24,6 +27,9 @@ public class User {
     @Column(name="birthday")
     private Date birthday;
 
-    @Column(name="price")
+    @Column(name="password")
     private String password;
+
+    @Column(name="admin")
+    private Boolean admin;
 }
