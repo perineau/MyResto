@@ -12,6 +12,10 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -26,7 +30,7 @@ public class Security {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http)throws Exception{
-        return http.csrf().disable().cors(AbstractHttpConfigurer::disable).authorizeHttpRequests()
+        return http.csrf().disable().cors().and().authorizeHttpRequests()
                 .requestMatchers(HttpMethod.GET,"/card").permitAll()
                 .requestMatchers(HttpMethod.GET,"/user/create").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
@@ -44,4 +48,10 @@ public class Security {
         return new BCryptPasswordEncoder();
     }
 
+    @Bean
+    public CorsConfigurationSource corsFilter() {
+        var source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+        return source;
+    }
 }
