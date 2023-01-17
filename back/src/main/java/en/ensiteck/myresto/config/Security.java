@@ -32,7 +32,7 @@ public class Security {
     public SecurityFilterChain securityFilterChain(HttpSecurity http)throws Exception{
         return http.csrf().disable().cors().and().authorizeHttpRequests()
                 .requestMatchers(HttpMethod.GET,"/card").permitAll()
-                .requestMatchers(HttpMethod.GET,"/user/create").permitAll()
+                .requestMatchers(HttpMethod.POST,"/user/create").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/error").permitAll()
                 .anyRequest().authenticated()

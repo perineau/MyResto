@@ -1,6 +1,7 @@
 package en.ensiteck.myresto.service;
 
 import en.ensiteck.myresto.dto.User;
+import en.ensiteck.myresto.exception.UserExisteException;
 import en.ensiteck.myresto.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,9 @@ public class UserService {
 
     public void createUser(User user){
         var userEntity = new en.ensiteck.myresto.entity.User();
+        if (userRepository.findById(user.login()).isPresent()){
+            throw new UserExisteException();
+        }
         userEntity.setLogin(user.login());
         userEntity.setPassword(passwordEncoder.encode(user.password()));
         userEntity.setLastname(user.lastname());
