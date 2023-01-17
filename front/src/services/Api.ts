@@ -15,13 +15,16 @@ export abstract class Api{
 
         var jsonMapped:Product[] = []
 
-        for (const [key, value] of Object.entries<any>(json)) {
-            jsonMapped.push({
-                id: value.id,
-                name: value.name,
-                price: value.price,
-                type: key as ProductType
-            })
+        for (const [type, subMenu] of Object.entries<any>(json)) {
+            subMenu.forEach((food: Product) => {
+                jsonMapped.push({
+                    id: food.id,
+                    name: food.name,
+                    price: food.price,
+                    type: type as ProductType
+                })
+            });
+     
         }
 
         return jsonMapped;
