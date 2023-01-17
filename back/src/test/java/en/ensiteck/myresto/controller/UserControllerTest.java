@@ -25,7 +25,7 @@ class UserControllerTest {
 
     @Test
     void createUser() throws Exception {
-        this.mockMvc.perform(post("/user/create").content("""
+        this.mockMvc.perform(post("/user").content("""
                         {
                         	"login":"userControle",
                         	"firstname":"qsdqsd",
