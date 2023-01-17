@@ -1,4 +1,4 @@
-INSERT INTO product (`id_product`, `name`, `price`, `type`) VALUES
+INSERT INTO product (id_product, name, price, type) VALUES
 (1,	'glace chocolat',	2,	'DESSERT'),
 (2,	'cote de port',	4.99,	'MAIN'),
 (3,	'frite',	2.50,	'MAIN'),
