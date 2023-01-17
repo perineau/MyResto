@@ -15,9 +15,8 @@ public class Command {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="idProduct")
-    @ManyToMany
-    private List<Product> idProduct;
+    @OneToMany(mappedBy = "command")
+    private List<ProductQuantity> products;
 
     @ManyToOne
     private User user;

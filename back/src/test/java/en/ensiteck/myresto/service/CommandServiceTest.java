@@ -32,7 +32,9 @@ class CommandServiceTest {
                 new ProductPost(4L,1L)
         );
         commandService.createCommand("test",command.collect(Collectors.toList()));
-        assertThat(commandRepository.findAll()).hasSize(1);
+        var commandRepo = commandRepository.findAll();
+        assertThat(commandRepo).hasSize(1);
+        assertThat(commandRepo.get(0).getProducts()).hasSize(3);
     }
 
     @Test

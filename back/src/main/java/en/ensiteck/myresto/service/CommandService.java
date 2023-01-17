@@ -2,6 +2,7 @@ package en.ensiteck.myresto.service;
 
 import en.ensiteck.myresto.dto.ProductPost;
 import en.ensiteck.myresto.dto.ProductReturn;
+import en.ensiteck.myresto.entity.ProductQuantity;
 import en.ensiteck.myresto.exception.BadIdException;
 import en.ensiteck.myresto.repository.CommandRepository;
 import en.ensiteck.myresto.repository.ProductRepository;
@@ -40,7 +41,14 @@ public class CommandService {
             ).map(Object::toString).collect(Collectors.toList());
             throw new BadIdException(missingId);
         }
-        commandEntity.setIdProduct(products);
+        var quantityProduct = products.stream().map(product -> {
+            var productPost = command.stream().filter(productCommand-> productCommand.id() == product.getId()).findFirst().get();
+            var quantity = new ProductQuantity();
+            quantity.setQuantity(productPost.qte());
+            quantity.setProduct(product);
+            return quantity;
+        }).collect(Collectors.toList());
+        commandEntity.setProducts(quantityProduct);
         commandRepository.save(commandEntity);
     }
 
