@@ -3,6 +3,7 @@ package en.ensiteck.myresto.service;
 import en.ensiteck.myresto.dto.User;
 import en.ensiteck.myresto.exception.UserExisteException;
 import en.ensiteck.myresto.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,6 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
+@Transactional
 class UserServiceTest {
 
     @Autowired
