@@ -1,4 +1,4 @@
-package en.ensiteck.MyResto;
+package en.ensiteck.myresto;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
