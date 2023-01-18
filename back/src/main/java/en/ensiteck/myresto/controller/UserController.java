@@ -29,6 +29,13 @@ public class UserController {
         userService.createUser(user);
     }
 
+    @PostMapping("/login")
+    public Map<String,String> login() {
+        var ret = new HashMap<String,String>();
+        ret.put("response","Ok");
+        return ret;
+    }
+
     @ExceptionHandler(UserExisteException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public Map<String,String> handleValidationExceptions(

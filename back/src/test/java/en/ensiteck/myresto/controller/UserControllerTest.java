@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -53,6 +54,22 @@ class UserControllerTest {
                         "reason":"utilisateur deja existant"
                         }
                         """));
+    }
+
+    @Test
+    void loginUser() throws Exception {
+        this.mockMvc.perform(post("/user/login")
+                        .with(httpBasic("test","test"))
+                )
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void errorUser() throws Exception {
+        this.mockMvc.perform(post("/user/login")
+                        .with(httpBasic("test","qsdqsd"))
+                )
+                .andExpect(status().isUnauthorized());
     }
 
 }
