@@ -1,9 +1,13 @@
 package en.ensiteck.myresto.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import en.ensiteck.myresto.dto.Command;
 import en.ensiteck.myresto.dto.ProductPost;
+import en.ensiteck.myresto.dto.ProductReturn;
 import en.ensiteck.myresto.exception.BadIdException;
 import en.ensiteck.myresto.service.CommandService;
 import jakarta.validation.Valid;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +29,12 @@ public class CommandController {
     @PostMapping("")
     public void createCommand(@Valid @RequestBody List<ProductPost> command, Principal principal) throws BadIdException {
         commandService.createCommand(principal.getName(),command);
+    }
+
+    @GetMapping("")
+    @JsonView(Command.class)
+    public List<Command> getCommand(Principal principal) {
+        return commandService.getCommand(principal.getName());
     }
 
     @ExceptionHandler(BadIdException.class)
