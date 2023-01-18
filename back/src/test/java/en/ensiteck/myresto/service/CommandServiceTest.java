@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -43,6 +44,7 @@ class CommandServiceTest {
 
         assertThat(commandRepo).hasSize(1);
         assertThat(commandRepo.get(0).getStatus()).isEqualTo(CommandStatus.PREPARE);
+        assertThat(commandRepo.get(0).getDate()).isCloseTo(Calendar.getInstance().getTime(),100000);
         assertThat(commandRepo.get(0).getProducts()).hasSize(3);
         assertThat(commandRepo.get(0).getProducts().stream().map(ProductQuantity::getQuantity)).containsOnly(1L);
         assertThat(commandRepo.get(0).getProducts().stream().map(ProductQuantity::getProduct))
@@ -68,11 +70,13 @@ class CommandServiceTest {
     void getCommand() throws BadIdException {
         createCommandEntity();
         var commandReturn = commandService.getCommand("test");
-        assertThat(commandReturn).hasSize(1).contains(new Command(1L, List.of(
+        assertThat(commandReturn).hasSize(1).usingRecursiveFieldByFieldElementComparatorIgnoringFields("date").contains(
+                new Command(1L, List.of(
                 new ProductReturn(1L, "glace chocolat",2,1L),
                 new ProductReturn(3L, "frite",2.50,1L),
                 new ProductReturn(4L, "salade",1.99,1L)
-        ), new UserReturn("test","test","test"),CommandStatus.PREPARE));
+        ), new UserReturn("test","test","test"),CommandStatus.PREPARE,null));
+        assertThat(commandReturn.get(0).date()).isCloseTo(Calendar.getInstance().getTime(),100000);
     }
 
     @Test

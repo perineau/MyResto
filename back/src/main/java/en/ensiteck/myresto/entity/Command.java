@@ -3,6 +3,7 @@ package en.ensiteck.myresto.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -22,5 +23,7 @@ public class Command {
 
     @Enumerated(EnumType.STRING)
     private CommandStatus status;
+
+    private Date date;
 
 }

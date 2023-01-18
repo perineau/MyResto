@@ -3,6 +3,7 @@ package en.ensiteck.myresto.dto;
 import com.fasterxml.jackson.annotation.JsonView;
 import en.ensiteck.myresto.entity.CommandStatus;
 
+import java.util.Date;
 import java.util.List;
 
 public record Command(
@@ -13,5 +14,7 @@ public record Command(
         @JsonView(Command.class)
         UserReturn user,
         @JsonView(Command.class)
-        CommandStatus status) {
+        CommandStatus status,
+        @JsonView(Command.class)
+        Date date) {
 }

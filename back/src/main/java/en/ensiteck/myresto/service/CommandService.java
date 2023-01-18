@@ -17,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -59,6 +60,7 @@ public class CommandService {
         productQuantityRepository.saveAll(quantityProduct);
         commandEntity.setProducts(quantityProduct);
         commandEntity.setStatus(CommandStatus.PREPARE);
+        commandEntity.setDate(Calendar.getInstance().getTime());
         commandRepository.save(commandEntity);
     }
 
@@ -81,7 +83,7 @@ public class CommandService {
                             command.getUser().getLogin(),
                             command.getUser().getFirstname(),
                             command.getUser().getLastname()
-                    ),command.getStatus());
+                    ),command.getStatus(),command.getDate());
         }).collect(Collectors.toList());
     }
 
