@@ -8,8 +8,11 @@ import en.ensiteck.myresto.entity.ProductQuantity;
 import en.ensiteck.myresto.entity.User;
 import en.ensiteck.myresto.exception.BadIdException;
 import en.ensiteck.myresto.repository.CommandRepository;
+import en.ensiteck.myresto.repository.ProductQuantityRepository;
 import en.ensiteck.myresto.repository.ProductRepository;
 import en.ensiteck.myresto.repository.UserRepository;
+import jakarta.transaction.Transactional;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
@@ -21,14 +24,17 @@ public class CommandService {
 
     private final CommandRepository commandRepository;
     private final ProductRepository productRepository;
+    private final ProductQuantityRepository productQuantityRepository;
     private final UserRepository userRepository;
-
-    public CommandService(CommandRepository commandRepository,UserRepository userRepository,ProductRepository productRepository){
+    
+    public CommandService(CommandRepository commandRepository,UserRepository userRepository,ProductRepository productRepository,ProductQuantityRepository productQuantityRepository){
         this.commandRepository = commandRepository;
         this.userRepository = userRepository;
         this.productRepository=productRepository;
+        this.productQuantityRepository = productQuantityRepository;
     }
 
+     @Transactional
     public void createCommand(String userName,List<ProductPost> command) throws BadIdException {
         var commandEntity = new en.ensiteck.myresto.entity.Command();
         commandEntity.setUser(getUser(userName));
@@ -46,8 +52,10 @@ public class CommandService {
             var quantity = new ProductQuantity();
             quantity.setQuantity(productPost.quantity());
             quantity.setProduct(product);
+            quantity.setCommand(commandEntity);
             return quantity;
         }).collect(Collectors.toList());
+        productQuantityRepository.saveAll(quantityProduct);
         commandEntity.setProducts(quantityProduct);
         commandRepository.save(commandEntity);
     }
