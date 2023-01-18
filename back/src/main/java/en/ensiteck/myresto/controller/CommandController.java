@@ -37,8 +37,8 @@ public class CommandController {
         return commandService.getCommand(principal.getName());
     }
 
-    @DeleteMapping("")
-    public void getCommand(Long id) throws BadIdException {
+    @DeleteMapping("/{id}")
+    public void deleteCommand(@PathVariable("id") Long id) throws BadIdException {
         commandService.deleteCommand(id);
     }
 
