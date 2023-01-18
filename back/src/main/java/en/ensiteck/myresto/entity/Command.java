@@ -15,7 +15,7 @@ public class Command {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "command")
+    @OneToMany(mappedBy = "command", cascade = CascadeType.ALL)
     private List<ProductQuantity> products;
 
     @ManyToOne

@@ -20,7 +20,7 @@ import java.util.Map;
 @RequestMapping("command")
 public class CommandController {
 
-    private CommandService commandService;
+    private final CommandService commandService;
 
     public CommandController(CommandService commandService){
         this.commandService=commandService;
@@ -35,6 +35,11 @@ public class CommandController {
     @JsonView(Command.class)
     public List<Command> getCommand(Principal principal) {
         return commandService.getCommand(principal.getName());
+    }
+
+    @DeleteMapping("")
+    public void getCommand(Long id) throws BadIdException {
+        commandService.deleteCommand(id);
     }
 
     @ExceptionHandler(BadIdException.class)

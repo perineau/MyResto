@@ -26,7 +26,7 @@ public class CommandService {
     private final ProductRepository productRepository;
     private final ProductQuantityRepository productQuantityRepository;
     private final UserRepository userRepository;
-    
+
     public CommandService(CommandRepository commandRepository,UserRepository userRepository,ProductRepository productRepository,ProductQuantityRepository productQuantityRepository){
         this.commandRepository = commandRepository;
         this.userRepository = userRepository;
@@ -81,6 +81,14 @@ public class CommandService {
                             command.getUser().getLastname()
                     ));
         }).collect(Collectors.toList());
+    }
+
+    public void deleteCommand(Long id) throws BadIdException {
+        var command = commandRepository.findById(id);
+        if (command.isEmpty()){
+            throw new BadIdException(List.of(id.toString()));
+        }
+        commandRepository.delete(command.get());
     }
 
     private User getUser(String userName){

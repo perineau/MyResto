@@ -9,6 +9,7 @@ import en.ensiteck.myresto.entity.ProductQuantity;
 import en.ensiteck.myresto.entity.ProductType;
 import en.ensiteck.myresto.exception.BadIdException;
 import en.ensiteck.myresto.repository.CommandRepository;
+import en.ensiteck.myresto.repository.ProductRepository;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,15 +32,12 @@ class CommandServiceTest {
     CommandService commandService;
     @Autowired
     CommandRepository commandRepository;
+    @Autowired
+    ProductRepository productRepository;
 
     @Test
     void createCommand() throws BadIdException {
-        var command = Stream.of(
-                new ProductPost(1L,1L),
-                new ProductPost(3L,1L),
-                new ProductPost(4L,1L)
-        );
-        commandService.createCommand("test",command.collect(Collectors.toList()));
+        createCommandEntity();
         var commandRepo = commandRepository.findAll();
         assertThat(commandRepo).hasSize(1);
         assertThat(commandRepo.get(0).getProducts()).hasSize(3);
@@ -65,18 +63,38 @@ class CommandServiceTest {
 
     @Test
     void getCommand() throws BadIdException {
-        var command = Stream.of(
-                new ProductPost(1L,1L),
-                new ProductPost(3L,1L),
-                new ProductPost(4L,1L)
-        );
-        commandService.createCommand("test",command.collect(Collectors.toList()));
+        createCommandEntity();
         var commandReturn = commandService.getCommand("test");
         assertThat(commandReturn).hasSize(1).contains(new Command(1L, List.of(
                 new ProductReturn(1L, "glace chocolat",2,1L),
                 new ProductReturn(3L, "frite",2.50,1L),
                 new ProductReturn(4L, "salade",1.99,1L)
         ), new UserReturn("test","test","test")));
+    }
+
+    @Test
+    void deleteCommand() throws BadIdException {
+        createCommandEntity();
+        commandService.deleteCommand(1L);
+        var commandRepo = commandRepository.findAll();
+        assertThat(commandRepo).isEmpty();
+        assertThat(productRepository.findAll()).hasSize(6);
+    }
+
+    @Test
+    void deleteCommandBadId() throws BadIdException {
+        createCommandEntity();
+        var exception = assertThrows(BadIdException.class ,()->commandService.deleteCommand(100L));
+        assertThat(exception.getIds()).containsOnly("100");
+    }
+
+    private void createCommandEntity() throws BadIdException {
+        var command = Stream.of(
+                new ProductPost(1L,1L),
+                new ProductPost(3L,1L),
+                new ProductPost(4L,1L)
+        );
+        commandService.createCommand("test",command.collect(Collectors.toList()));
     }
 
 }
