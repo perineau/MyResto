@@ -36,7 +36,7 @@ export class Section extends React.Component<SectionProps> {
     }
 
     return (
-      <div>
+      <div style={{paddingLeft: '5rem', marginBottom: '3rem'}}>
         <h1>{type}</h1>
         <div className="section">
           {products.map((product,i)=>{

@@ -18,6 +18,8 @@ body{
 
 .section{
     display: flex;
+    flex-wrap: wrap;
+    gap: 5rem;
 }
 
 .foodCard img{
@@ -106,7 +108,7 @@ button, input[type="submit"], input[type="reset"] {
 
 #salade{
     height: calc(100vh - 64px);
-    width: calc(100vw);
+    width: 100%;
     background-repeat: no-repeat;
     background-position: 0px 80vh;
     background-image: url("./../ressources/salade.png");
@@ -133,4 +135,8 @@ a {
 
 .flex{
     display: flex;
+}
+
+.centered {
+    gap: 3rem;
 }
