@@ -32,11 +32,13 @@ export abstract class Api{
             method: "POST",
             body: JSON.stringify({
                 login,password,lastname,mail,address,firstname
-            })
+            }),
+            headers: {
+                'Content-Type': "application/json"
+            },
         })
     }
 
-    //TODO: can't login as user because no route
     static async login(login:string, password:string){
         try{
             const res = await fetch(`${this.url}/user/login`, {
@@ -45,11 +47,15 @@ export abstract class Api{
                     'Authorization': `basic ${btoa(`${login}:${password}`)}`,
                 },
             })
+
+            const json = await res.json();
+
             user.login = login
             user.password = password
+            user.isAdmin = json.admin
             setCookie('login', login, 1)
             setCookie('password', password, 1)
-            setCookie('isAdmin', 'true', 1)
+            setCookie('isAdmin', json.isAdmin, 1)
         }catch(error){
 
         }
@@ -57,22 +63,28 @@ export abstract class Api{
     }
 
     static async disconnect(){
+        console.log("test")
         deleteCookie('login')
         deleteCookie('password')
     }
 
-    //TODO: get commands
     static async getCommand(){
-        fetch(`${this.url}/commands`, {
+        const res = await fetch(`${this.url}/command`, {
             method: "GET",
+            headers: {
+                'Authorization': `basic ${btoa(`${user.login}:${user.password}`)}`,
+                'Content-Type': "application/json"
+            },
         })
+        const json = await res.json()
+        return json
     }
 
     static async createCommand(command:ProductShopping){
         fetch(`${this.url}/command`, {
             method: "POST",
             headers: {
-                'Authorization': `basic ${btoa('test:test')}`,
+                'Authorization': `basic ${btoa(`${user.login}:${user.password}`)}`,
                 'Content-Type': "application/json"
             },
             body: JSON.stringify(command)
@@ -104,5 +116,6 @@ export function getCookie(cname: string) {
 }
 
 function deleteCookie(name: string) {   
-    document.cookie = name+'=; Max-Age=-99999999;';  
+    console.log("test")
+    document.cookie = name + '=; Max-Age=0'
 }

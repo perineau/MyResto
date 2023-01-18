@@ -19,7 +19,9 @@ export class FoodCard extends React.Component<FoodCardProps> {
       <div className="foodCard">
         <img src={imgPlaceholder}></img>
         <div className="detail">
-            <h1>{product.name}</h1><h3>{product.price}</h3><button onClick={()=>{this.props.onAdd(product)}}>Ajouter</button>
+            <h1>{product.name}</h1>
+            <button onClick={()=>{this.props.onAdd(product)}}>Ajouter</button>
+            <h3>{product.price} €</h3>
         </div>
       </div>
     );

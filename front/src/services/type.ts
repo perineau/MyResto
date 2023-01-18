@@ -11,3 +11,8 @@ export type Product = {
     type: ProductType,
     price:number
 }
+
+export enum commandStatus{
+    SEND="SEND", 
+    PREPARE="PREPARE"
+}

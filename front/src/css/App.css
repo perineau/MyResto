@@ -1,0 +1,133 @@
+html{
+    --primary-color: #DFD4B4;
+    --primary-focus-color: #F8B64C;
+}
+
+body{
+    background-color: var(--primary-color);
+}
+
+.App{
+    margin-top: 64px;
+}
+
+.products{
+    display: flex;
+    flex-direction: column;
+}
+
+.section{
+    display: flex;
+}
+
+.foodCard img{
+    width: 100%;
+}
+
+.foodCard{
+    width: 300px;
+    margin: 10px;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+
+.foodCard .detail{
+    padding: 10px;
+}
+
+.foodCard .detail button{
+    display: block;
+    margin-right: 0;
+    margin-left: auto;
+}
+
+nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+}
+
+nav div{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+nav div{
+    display: flex;
+}
+
+nav button{
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+button, input[type="submit"], input[type="reset"] {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+
+    background-color: var(--primary-focus-color);
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    color: white;
+    text-transform: uppercase;
+    margin: 5px;
+}
+
+.verticalFlex{
+    display: flex;
+    flex-direction: column;
+}
+
+#header{
+    height: calc(100vh - 64px);
+    width: 100%;
+    background-image: url("./../ressources/hero.png");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#salade{
+    height: calc(100vh - 64px);
+    width: calc(100vw);
+    background-repeat: no-repeat;
+    background-position: 0px 80vh;
+    background-image: url("./../ressources/salade.png");
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    background-size: 100px;
+}
+
+nav #logo{
+    padding: 10px;
+}
+
+a {
+    all: unset;
+    text-transform: uppercase;
+    margin: 5px;
+    display: block;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+

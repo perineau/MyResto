@@ -36,13 +36,16 @@ export class Section extends React.Component<SectionProps> {
     }
 
     return (
-      <div className="section">
+      <div>
         <h1>{type}</h1>
-        {products.map((product,i)=>{
-           return (
-            <FoodCard product={product} onAdd={this.props.onAdd}></FoodCard>
-           )
-        })}
+        <div className="section">
+          {products.map((product,i)=>{
+            return (
+              <FoodCard product={product} onAdd={this.props.onAdd}></FoodCard>
+            )
+          })}
+        </div>
+
       </div>
     );
   }

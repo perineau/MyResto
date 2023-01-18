@@ -1,0 +1,44 @@
+#loginPage > div{
+    display: flex;
+    background-color: #E3E3E3;
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+form{
+    text-align: center;
+    margin: 50px
+}
+
+form div{
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    color: gray;
+    background-color: white;
+    padding: 3px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 10px;
+}
+
+input{
+    outline: none;
+    border: none;
+    padding: 10px;
+}
+
+input[type=button]{
+    background-color: var(--primary-focus-color);
+    border-radius: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: block;
+    margin: auto;
+}
+
+#loginPage{
+    display: flex;
+    justify-content: center;
+    margin-top: calc(64px + 50px);
+}
