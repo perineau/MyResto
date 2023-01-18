@@ -44,9 +44,9 @@ class CommandServiceTest {
         assertThat(commandRepo.get(0).getProducts().stream().map(ProductQuantity::getQuantity)).containsOnly(1L);
         assertThat(commandRepo.get(0).getProducts().stream().map(ProductQuantity::getProduct))
                 .contains(
-                        new Product(1L, "glace chocolat", ProductType.DESSERT,2),
-                        new Product(3L, "frite",ProductType.MAIN,2.50),
-                        new Product(4L, "salade",ProductType.ENTRY,1.99)
+                        new Product(1L, "glace chocolat", ProductType.DESSERT,2,null),
+                        new Product(3L, "frite",ProductType.MAIN,2.50,null),
+                        new Product(4L, "salade",ProductType.ENTRY,1.99,null)
                 );
     }
 

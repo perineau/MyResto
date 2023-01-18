@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Blob;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,4 +28,6 @@ public class Product {
 
     @Column(name="price")
     private double price;
+
+    private Byte[] image;
 }
