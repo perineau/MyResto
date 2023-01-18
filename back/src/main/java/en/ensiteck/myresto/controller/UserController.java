@@ -8,6 +8,8 @@ import en.ensiteck.myresto.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,9 +32,9 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public Map<String,String> login() {
-        var ret = new HashMap<String,String>();
-        ret.put("response","Ok");
+    public Map<String,Object> login(Authentication authentication) {
+        var ret = new HashMap<String,Object>();
+        ret.put("admin",authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN")));
         return ret;
     }
 

@@ -63,7 +63,25 @@ class UserControllerTest {
         this.mockMvc.perform(post("/user/login")
                         .with(httpBasic("test","test"))
                 )
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                        {
+                            "admin":false
+                        }
+                        """));
+    }
+
+    @Test
+    void loginAdminUser() throws Exception {
+        this.mockMvc.perform(post("/user/login")
+                        .with(httpBasic("admin","admin"))
+                )
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                        {
+                            "admin":true
+                        }
+                        """));
     }
 
     @Test
