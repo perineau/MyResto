@@ -1,7 +1,6 @@
 import React from 'react';
 import { Api } from '../services/Api';
 import { Product, ProductType } from '../services/type';
-import { FoodCard } from './FoodCard';
 import { Section } from './Section';
 import { ProductShopping, ShoppingList } from './ShoppingList';
 
@@ -18,8 +17,8 @@ export class Menu extends React.Component<MenuProps,MenuState> {
     super(props)
 
     this.state = {
-        products:[],
-        productsShopping: {}
+      products:[],
+      productsShopping: []
     }
   }
 
@@ -34,20 +33,25 @@ export class Menu extends React.Component<MenuProps,MenuState> {
         <Section type={ProductType.DESSERT} products={products.filter((v) => { return v.type == ProductType.DESSERT; })} onAdd={this.addProductToShoppingList.bind(this)}></Section>
         <Section type={ProductType.DRINK} products={products.filter((v) => { return v.type == ProductType.DRINK; })} onAdd={this.addProductToShoppingList.bind(this)}></Section>
 
-        <ShoppingList products={this.state.productsShopping} onAdd={this.addProductToShoppingList.bind(this)} onRemove={this.removeProductToShoppingList.bind(this)}></ShoppingList>
+        <ShoppingList products={this.state.productsShopping} onDelete={this.deleteProductToShoppingList.bind(this)} onAdd={this.addProductToShoppingList.bind(this)} onRemove={this.removeProductToShoppingList.bind(this)}></ShoppingList>
       </div>
     );
   }
 
   addProductToShoppingList(product:Product){
     var productsShopping = this.state.productsShopping
-    if(productsShopping[product.id]){
-      productsShopping[product.id].qte++
+    var productIndex = productsShopping.findIndex((_product)=>product.id == _product?.id)
+
+    if(productIndex != -1){
+      productsShopping[productIndex].quantity++
     }else{
-      productsShopping[product.id] = {
-        product:product,
-        qte:1
-      }
+      productsShopping.push({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        type: product.type,
+        quantity:1
+      })
     }
 
     this.setState({
@@ -58,12 +62,29 @@ export class Menu extends React.Component<MenuProps,MenuState> {
 
   removeProductToShoppingList(product:Product){
     var productsShopping = this.state.productsShopping
-    if(productsShopping[product.id]){
-      productsShopping[product.id].qte--
+    var productIndex = productsShopping.findIndex((_product)=>product.id == _product?.id)
 
-      if(productsShopping[product.id].qte == 0){
-        delete productsShopping[product.id]
-      }
+    if(productIndex != -1){
+      productsShopping[productIndex].quantity--
+      if(productsShopping[productIndex].quantity <= 0) delete productsShopping[productIndex]
+    }else{
+      throw new Error("Ce produit n'existe pas")
+    }
+
+    this.setState({
+      products: this.state.products,
+      productsShopping: productsShopping
+    })
+  }
+
+  deleteProductToShoppingList(product:Product){
+    var productsShopping = this.state.productsShopping
+    var productIndex = productsShopping.findIndex((_product)=>product.id == _product?.id)
+
+    if(productIndex != -1){
+      delete productsShopping[productIndex]
+    }else{
+      throw new Error("Ce produit n'existe pas")
     }
 
     this.setState({

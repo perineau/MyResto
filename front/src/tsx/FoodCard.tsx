@@ -11,15 +11,6 @@ type FoodCardProps = {
 export class FoodCard extends React.Component<FoodCardProps> {
   constructor(props:any) {
     super(props)
-
-    this.state = {
-        product:{
-            "id": 0,
-            "name": "undefined",
-            "price": 0,
-            "type": ProductType.MAIN
-        }
-    }
   }
 
   render() {
