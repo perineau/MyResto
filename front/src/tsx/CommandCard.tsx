@@ -27,10 +27,10 @@ export class CommandCard extends React.Component<CommandCardProps> {
   render() {
     return (
       <div className="commandCard">
-        COMMANDE {this.props.commands.user.firstname} {this.props.commands.user.lastname}
+        <div>COMMANDE {this.props.commands.user.firstname} {this.props.commands.user.lastname}</div>
         {this.props.commands.product.map((product)=>{
             return(
-                <span>{product.quantity}X {product.name}</span>
+                <div>{product.quantity}X {product.name}</div>
             )
         })}
       </div>

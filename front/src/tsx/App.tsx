@@ -15,6 +15,7 @@ import React from 'react';
 import logo from "./../ressources/Logo.png"
 import panier from "./../ressources/Panier.png"
 import "./../css/loginRegister.css"
+import "./../css/admin.css"
 
 type User={
   login?:string,

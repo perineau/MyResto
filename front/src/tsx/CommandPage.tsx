@@ -1,6 +1,6 @@
 import React from 'react';
 import { Api, getCookie } from '../services/Api';
-import { Product, ProductType } from '../services/type';
+import { commandStatus, Product, ProductType } from '../services/type';
 import { Command, CommandCard } from './CommandCard';
 import { ProductShopping } from './ShoppingList';
 const {GoogleCharts} = require("google-charts")
@@ -24,11 +24,25 @@ export class CommandPage extends React.Component<CommandPageProps, CommandPageSt
   render() {
     return (
       <div className="commandPage">
-        {this.state.commands.map((command)=>{
-          return (
-            <CommandCard commands={command}></CommandCard>
-          )
-        })}
+        <div className='flex'>
+          <div>
+            {this.state.commands.map((command)=>{
+              if(command.status == commandStatus.SEND) return
+              return (
+                <CommandCard commands={command}></CommandCard>
+              )
+            })}
+          </div>
+          <div>
+            {this.state.commands.map((command)=>{
+              if(command.status == commandStatus.PREPARE) return
+              return (
+                <CommandCard commands={command}></CommandCard>
+              )
+            })}
+          </div>
+        </div>
+
         <div id="chart_div"></div>
       </div>
     );
