@@ -1,14 +1,13 @@
 package en.ensiteck.myresto.dto;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import jakarta.validation.constraints.NotEmpty;
 
-import java.util.List;
-
-public record Command(
+public record UserReturn(
         @JsonView(Command.class)
-        Long id,
+        String login,
         @JsonView(Command.class)
-        List<ProductReturn> product,
+        String firstname,
         @JsonView(Command.class)
-        UserReturn user) {
+        String lastname) {
 }

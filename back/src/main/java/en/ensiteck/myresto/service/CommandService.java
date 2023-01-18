@@ -3,6 +3,7 @@ package en.ensiteck.myresto.service;
 import en.ensiteck.myresto.dto.Command;
 import en.ensiteck.myresto.dto.ProductPost;
 import en.ensiteck.myresto.dto.ProductReturn;
+import en.ensiteck.myresto.dto.UserReturn;
 import en.ensiteck.myresto.entity.ProductQuantity;
 import en.ensiteck.myresto.entity.User;
 import en.ensiteck.myresto.exception.BadIdException;
@@ -57,12 +58,20 @@ public class CommandService {
 
         return commands.stream().map(command -> {
             var products = command.getProducts();
-            return new Command(command.getId(),products.stream()
-                    .map(product-> new ProductReturn(product.getProduct().getId(),
-                            product.getProduct().getName(),
-                            product.getProduct().getPrice(),
-                            product.getQuantity()
-                    )).collect(Collectors.toList()));
+            return new Command(
+                    command.getId(),
+                    products.stream()
+                            .map(product-> new ProductReturn(
+                                    product.getProduct().getId(),
+                                    product.getProduct().getName(),
+                                    product.getProduct().getPrice(),
+                                    product.getQuantity()
+                            )).collect(Collectors.toList()),
+                    new UserReturn(
+                            command.getUser().getLogin(),
+                            command.getUser().getFirstname(),
+                            command.getUser().getLastname()
+                    ));
         }).collect(Collectors.toList());
     }
 

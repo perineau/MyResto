@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -102,7 +103,7 @@ class CommandControllerTest {
                 )
                 .andExpect(status().isOk())
                 .andExpect(content().json("""
-                [{"id":1,"product":[{"id":1,"name":"glace chocolat","price":2.0,"quantity":1},{"id":2,"name":"cote de port","price":4.99,"quantity":1},{"id":3,"name":"frite","price":2.5,"quantity":1}]}]
+[{"id":1,"product":[{"id":1,"name":"glace chocolat","price":2.0,"quantity":1},{"id":2,"name":"cote de port","price":4.99,"quantity":1},{"id":3,"name":"frite","price":2.5,"quantity":1}],"user":{"login":"test","firstname":"test","lastname":"test"}}]
                 """));
     }
 }

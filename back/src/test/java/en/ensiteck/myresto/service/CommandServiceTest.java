@@ -3,6 +3,7 @@ package en.ensiteck.myresto.service;
 import en.ensiteck.myresto.dto.Command;
 import en.ensiteck.myresto.dto.ProductPost;
 import en.ensiteck.myresto.dto.ProductReturn;
+import en.ensiteck.myresto.dto.UserReturn;
 import en.ensiteck.myresto.entity.Product;
 import en.ensiteck.myresto.entity.ProductQuantity;
 import en.ensiteck.myresto.entity.ProductType;
@@ -75,7 +76,7 @@ class CommandServiceTest {
                 new ProductReturn(1L, "glace chocolat",2,1L),
                 new ProductReturn(3L, "frite",2.50,1L),
                 new ProductReturn(4L, "salade",1.99,1L)
-        )));
+        ), new UserReturn("test","test","test")));
     }
 
 }
