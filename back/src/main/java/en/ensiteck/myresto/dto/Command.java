@@ -1,6 +1,7 @@
 package en.ensiteck.myresto.dto;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import en.ensiteck.myresto.entity.CommandStatus;
 
 import java.util.List;
 
@@ -10,5 +11,7 @@ public record Command(
         @JsonView(Command.class)
         List<ProductReturn> product,
         @JsonView(Command.class)
-        UserReturn user) {
+        UserReturn user,
+        @JsonView(Command.class)
+        CommandStatus status) {
 }

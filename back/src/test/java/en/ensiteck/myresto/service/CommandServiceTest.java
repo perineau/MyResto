@@ -4,6 +4,7 @@ import en.ensiteck.myresto.dto.Command;
 import en.ensiteck.myresto.dto.ProductPost;
 import en.ensiteck.myresto.dto.ProductReturn;
 import en.ensiteck.myresto.dto.UserReturn;
+import en.ensiteck.myresto.entity.CommandStatus;
 import en.ensiteck.myresto.entity.Product;
 import en.ensiteck.myresto.entity.ProductQuantity;
 import en.ensiteck.myresto.entity.ProductType;
@@ -39,7 +40,9 @@ class CommandServiceTest {
     void createCommand() throws BadIdException {
         createCommandEntity();
         var commandRepo = commandRepository.findAll();
+
         assertThat(commandRepo).hasSize(1);
+        assertThat(commandRepo.get(0).getStatus()).isEqualTo(CommandStatus.PREPARE);
         assertThat(commandRepo.get(0).getProducts()).hasSize(3);
         assertThat(commandRepo.get(0).getProducts().stream().map(ProductQuantity::getQuantity)).containsOnly(1L);
         assertThat(commandRepo.get(0).getProducts().stream().map(ProductQuantity::getProduct))
@@ -69,7 +72,7 @@ class CommandServiceTest {
                 new ProductReturn(1L, "glace chocolat",2,1L),
                 new ProductReturn(3L, "frite",2.50,1L),
                 new ProductReturn(4L, "salade",1.99,1L)
-        ), new UserReturn("test","test","test")));
+        ), new UserReturn("test","test","test"),CommandStatus.PREPARE));
     }
 
     @Test

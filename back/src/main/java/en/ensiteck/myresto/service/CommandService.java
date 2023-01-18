@@ -4,6 +4,7 @@ import en.ensiteck.myresto.dto.Command;
 import en.ensiteck.myresto.dto.ProductPost;
 import en.ensiteck.myresto.dto.ProductReturn;
 import en.ensiteck.myresto.dto.UserReturn;
+import en.ensiteck.myresto.entity.CommandStatus;
 import en.ensiteck.myresto.entity.ProductQuantity;
 import en.ensiteck.myresto.entity.User;
 import en.ensiteck.myresto.exception.BadIdException;
@@ -57,6 +58,7 @@ public class CommandService {
         }).collect(Collectors.toList());
         productQuantityRepository.saveAll(quantityProduct);
         commandEntity.setProducts(quantityProduct);
+        commandEntity.setStatus(CommandStatus.PREPARE);
         commandRepository.save(commandEntity);
     }
 
@@ -79,7 +81,7 @@ public class CommandService {
                             command.getUser().getLogin(),
                             command.getUser().getFirstname(),
                             command.getUser().getLastname()
-                    ));
+                    ),command.getStatus());
         }).collect(Collectors.toList());
     }
 
