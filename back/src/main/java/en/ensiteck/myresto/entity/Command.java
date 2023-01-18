@@ -21,4 +21,7 @@ public class Command {
     @ManyToOne
     private User user;
 
+    @Enumerated(EnumType.STRING)
+    private CommandStatus status;
+
 }

@@ -68,7 +68,7 @@ class CommandControllerTest {
                 )
                 .andExpect(status().isOk())
                 .andExpect(content().json("""
-[{"id":1,"product":[{"id":1,"name":"glace chocolat","price":2.0,"quantity":1},{"id":2,"name":"cote de port","price":4.99,"quantity":1},{"id":3,"name":"frite","price":2.5,"quantity":1}],"user":{"login":"test","firstname":"test","lastname":"test"}}]
+[{"id":1,"product":[{"id":1,"name":"glace chocolat","price":2.0,"quantity":1},{"id":2,"name":"cote de port","price":4.99,"quantity":1},{"id":3,"name":"frite","price":2.5,"quantity":1}],"user":{"login":"test","firstname":"test","lastname":"test"},"status":"PREPARE"}]                
                 """));
     }
 
