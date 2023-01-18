@@ -7,11 +7,10 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "command")
+@Table
 public class Command {
 
     @Id
-    @Column(name="idCommand")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

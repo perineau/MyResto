@@ -11,22 +11,18 @@ import java.sql.Blob;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "product")
+@Table
 public class Product {
 
     @Id
-    @Column(name="idProduct")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="name")
     private String name;
 
-    @Column(name="type")
     @Enumerated(EnumType.STRING)
     private ProductType type;
 
-    @Column(name="price")
     private double price;
 
     private Byte[] image;
