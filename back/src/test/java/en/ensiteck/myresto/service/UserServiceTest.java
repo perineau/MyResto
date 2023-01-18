@@ -23,7 +23,7 @@ class UserServiceTest {
 
     @Test
     void checkIfPasswordWasEncrypt() throws UserExisteException {
-        var user = new User("userCreate","user","user","test");
+        var user = new User("userCreate","user","user","test","email","address");
         userService.createUser(user);
         var userBase = userRepository.findById("userCreate");
         assertThat(userBase).isNotEmpty().get().extracting("password").isNotEqualTo("test");
@@ -31,7 +31,7 @@ class UserServiceTest {
 
     @Test
     void cantCreateExistingUser(){
-        var user = new User("admin","user","user","test");
+        var user = new User("admin","user","user","test","email","address");
         assertThrows(UserExisteException.class,()->userService.createUser(user));
     }
 

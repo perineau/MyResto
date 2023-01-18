@@ -27,6 +27,8 @@ public class UserService {
         userEntity.setLastname(user.lastname());
         userEntity.setFirstname(user.firstname());
         userEntity.setAdmin(false);
+        userEntity.setEmail(user.email());
+        userEntity.setAddress(user.address());
         userRepository.save(userEntity);
     }
 

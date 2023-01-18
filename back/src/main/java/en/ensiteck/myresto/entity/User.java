@@ -11,18 +11,17 @@ import java.util.Date;
 public class User {
 
     @Id
-    @Column(name="login")
     private String login;
 
-    @Column(name="firstname")
     private String firstname;
 
-    @Column(name="lastname")
     private String lastname;
 
-    @Column(name="password")
     private String password;
 
-    @Column(name="admin")
+    private String email;
+
+    private String address;
+
     private Boolean admin;
 }

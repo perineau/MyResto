@@ -45,7 +45,9 @@ class UserControllerTest {
                         	"login":"admin",
                         	"firstname":"qsdqsd",
                         	"lastname":"qsdqsd",
-                        	"password":"qsdqsd"
+                        	"password":"qsdqsd",
+                        	"email":"email",
+                        	"address":"address"
                         }
                         """).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())

@@ -10,5 +10,9 @@ public record User(
         @NotEmpty
         String lastname,
         @NotEmpty
-        String password) {
+        String password,
+        @NotEmpty
+        String email,
+        @NotEmpty
+        String address) {
 }
