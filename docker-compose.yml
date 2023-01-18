@@ -1,0 +1,14 @@
+services:
+  api:
+    extends:
+     file: ./back/docker-compose.yml
+     service: api
+  db:
+    extends:
+     file: ./back/docker-compose.yml
+     service: db
+  font:
+    build:
+      context: front
+    ports:
+      - 8080:80
