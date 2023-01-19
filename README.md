@@ -11,7 +11,7 @@
 - Il faut simplement faire un `docker-compose up -d` sur le repertoire courant => Cela va lancer le conteneur du Front et du Back et donc la BDD qui va avec.
 
 - Pour accéder ensuite à l'application il suffit de : 
-    - De se rendre sur cette URL http://localhost:8080/
+    - Se rendre sur cette URL http://localhost:8080/
 
 ## Les comptes disponibles en local : 
 
