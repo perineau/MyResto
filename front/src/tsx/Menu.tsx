@@ -34,6 +34,7 @@ export class Menu extends React.Component<MenuProps,MenuState> {
         <Section type={ProductType.DRINK} products={products.filter((v) => { return v.type == ProductType.DRINK; })} onAdd={this.addProductToShoppingList.bind(this)}></Section>
 
         <ShoppingList products={this.state.productsShopping} onDelete={this.deleteProductToShoppingList.bind(this)} onAdd={this.addProductToShoppingList.bind(this)} onRemove={this.removeProductToShoppingList.bind(this)}></ShoppingList>
+        <div id='onBackground'></div>
       </div>
     );
   }

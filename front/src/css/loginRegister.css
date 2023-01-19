@@ -3,6 +3,7 @@
     background-color: #E3E3E3;
     border-radius: 50px;
     overflow: hidden;
+    height: fit-content;
 }
 
 form{
@@ -40,5 +41,37 @@ input[type=button]{
 #loginPage{
     display: flex;
     justify-content: center;
-    margin-top: calc(64px + 50px);
+    padding-top: calc(64px + 20px);
+
+    background-image: url("./../ressources/Vector\ 1.svg");
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    min-height: calc(100vh - 64px - 20px);
+}
+
+.onBackground{
+    background-image: url("./../ressources/onBackground.svg");
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    width: 500px;
+    height: 600px;
+    background-size: cover;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+}
+
+.titlelogo{
+    display: flex;
+    flex-direction: row;
+    background-color: #00000000;
+    color: black;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.titlelogo img{
+    width: 50px;
+    height: 50px;
+    margin: 20px;
 }

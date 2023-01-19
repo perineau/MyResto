@@ -25,21 +25,31 @@ export class CommandPage extends React.Component<CommandPageProps, CommandPageSt
     return (
       <div className="commandPage">
         <div className='flex'>
-          <div>
-            {this.state.commands.map((command)=>{
-              if(command.status == commandStatus.SEND) return
-              return (
-                <CommandCard commands={command}></CommandCard>
-              )
-            })}
+          <div className='verticalFlex'>
+            <div className='cmd'>
+              Commande en cours <div className='green'>{this.state.commands.filter((cmd)=>cmd.status==commandStatus.PREPARE).length}</div>
+            </div>
+            <div className='cmds'>
+              {this.state.commands.map((command)=>{
+                if(command.status == commandStatus.SEND) return
+                return (
+                  <CommandCard commands={command}></CommandCard>
+                )
+              })}
+            </div>
           </div>
-          <div>
-            {this.state.commands.map((command)=>{
-              if(command.status == commandStatus.PREPARE) return
-              return (
-                <CommandCard commands={command}></CommandCard>
-              )
+          <div className='verticalFlex'>
+            <div className='cmd'>
+              Commande passées <div className='red'>{this.state.commands.filter((cmd)=>cmd.status==commandStatus.SEND).length}</div>
+            </div>
+            <div className='cmds'>
+              {this.state.commands.map((command)=>{
+                if(command.status == commandStatus.PREPARE) return
+                return (
+                  <CommandCard commands={command}></CommandCard>
+                )
             })}
+            </div>
           </div>
         </div>
 

@@ -87,7 +87,7 @@ var login = (
   {navbar}
     <div>
       <form>
-        <h1>Se connecter</h1>
+        <div className='titlelogo'><h1>Se connecter</h1><img src={logo}></img></div>
         <div>
           <div>Nom d'utilisateur</div>
           <input id='login' type='text'></input>
@@ -102,6 +102,7 @@ var login = (
         }}></input>
       </form>
       <img id='imgLogin' src={imgLogin}></img>
+      <div className='onBackground'></div>
     </div>
   </div>
 )
@@ -111,7 +112,7 @@ var register = (
   {navbar}
     <div>
       <form>
-        <h1>S'enregistrer</h1>
+        <div className='titlelogo'><h1>S'enregistrer</h1><img src={logo}></img></div>
         <div>
           <div>Nom prénom</div>
           <input type='text'></input>
@@ -145,6 +146,7 @@ var register = (
         }}></input>
       </form>
       <img src={imgLogin}></img>
+      <div className='onBackground'></div>
     </div>
   </div>
 )
