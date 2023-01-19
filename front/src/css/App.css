@@ -18,6 +18,8 @@ body{
 
 .section{
     display: flex;
+    flex-wrap: wrap;
+    gap: 5rem;
 }
 
 .foodCard img{
@@ -148,4 +150,8 @@ a {
     z-index:-1;
     position: absolute;
     right: 0;
+}
+
+.centered {
+    gap: 3rem;
 }

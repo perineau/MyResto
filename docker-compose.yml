@@ -1,4 +1,4 @@
-doservices:
+services:
   api:
     extends:
      file: ./back/docker-compose.yml
@@ -7,7 +7,13 @@ doservices:
     extends:
      file: ./back/docker-compose.yml
      service: db
-  font:
+
+  adminer:
+    extends:
+     file: ./back/docker-compose.yml
+     service: adminer
+
+  front:
     build:
       context: front
     ports:
