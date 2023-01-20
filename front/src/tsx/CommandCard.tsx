@@ -4,7 +4,7 @@ import { commandStatus, Product, ProductType } from '../services/type';
 import { ProductShopping } from './ShoppingList';
 
 type CommandCardProps = {
-    commands: Command
+    commands: Command,
 }
 
 export type Command = {
@@ -22,7 +22,13 @@ export type Command = {
 export class CommandCard extends React.Component<CommandCardProps> {
   constructor(props:any) {
     super(props)
+  }
 
+
+  setCommandDone(command: Command) {
+    Api.setCommandDone(command);
+    Api.getCommand();
+    window.location.reload();
   }
 
   render() {
@@ -34,7 +40,10 @@ export class CommandCard extends React.Component<CommandCardProps> {
         <>
               <br/>
               <div>{product.quantity}x {product.name}</div>
-              <br/>
+              {this.props.commands.status === "PREPARE" ? 
+                <button onClick={()=> this.setCommandDone(this.props.commands)}>Done</button>
+                : null
+              }
               <hr/>
               <br/>
               </>
@@ -44,7 +53,4 @@ export class CommandCard extends React.Component<CommandCardProps> {
     );
   }
 
-  componentDidMount() {
-
-  }
 }

@@ -77,7 +77,8 @@ public class CommandService {
                                     product.getProduct().getId(),
                                     product.getProduct().getName(),
                                     product.getProduct().getPrice(),
-                                    product.getQuantity()
+                                    product.getQuantity(),
+                                    product.getProduct().getImage()
                             )).collect(Collectors.toList()),
                     new UserReturn(
                             command.getUser().getLogin(),

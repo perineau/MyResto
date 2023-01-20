@@ -1,4 +1,5 @@
 import { user } from "../tsx/App";
+import { Command } from "../tsx/CommandCard";
 import { ProductShopping } from "../tsx/ShoppingList";
 import { Product, ProductType } from "./type";
 
@@ -18,7 +19,8 @@ export abstract class Api{
                     id: food.id,
                     name: food.name,
                     price: food.price,
-                    type: type as ProductType
+                    type: type as ProductType,
+                    image: food.image
                 })
             });
         }
@@ -82,6 +84,17 @@ export abstract class Api{
 
     static async createCommand(command:ProductShopping){
         fetch(`${this.url}/command`, {
+            method: "POST",
+            headers: {
+                'Authorization': `basic ${btoa(`${user.login}:${user.password}`)}`,
+                'Content-Type': "application/json"
+            },
+            body: JSON.stringify(command)
+        })
+    }
+
+    static async setCommandDone(command:Command){
+        fetch(`${this.url}/command/${command.id}/send`, {
             method: "POST",
             headers: {
                 'Authorization': `basic ${btoa(`${user.login}:${user.password}`)}`,

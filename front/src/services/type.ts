@@ -9,7 +9,8 @@ export type Product = {
     id:number,
     name: string,
     type: ProductType,
-    price:number
+    price: number,
+    image: any,
 }
 
 export enum commandStatus{

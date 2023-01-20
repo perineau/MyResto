@@ -4,6 +4,7 @@ import { Product } from '../services/type';
 import imgPlaceholder from "./../ressources/placeholder.svg"
 import { user } from './App';
 import "./../css/ShoppingList.css"
+import { useState } from 'react';
 
 export type ProductShopping = (Product&{quantity:number})[]
 
@@ -22,9 +23,20 @@ export class ShoppingList extends React.Component<ShoppingListProps, ShoppingLis
     super(props)
   }
 
+  _arrayBufferToBase64 = ( buffer: any ) => {
+    var binary = '';
+    var bytes = new Uint8Array( buffer );
+    var len = bytes.byteLength;
+    for (var i = 0; i < len; i++) {
+        binary += String.fromCharCode( bytes[ i ] );
+    }
+    return window.btoa( binary );
+}
+
   render() {
     const shoppingList = this.props.products;
     var total = 0
+
     shoppingList.forEach((product)=>{
       total += product.price * product.quantity
     })
@@ -34,9 +46,10 @@ export class ShoppingList extends React.Component<ShoppingListProps, ShoppingLis
         <h1>Récapitulatif</h1>
         {
           shoppingList.map((value,i)=>{
+            const productImage = this._arrayBufferToBase64(value.image);
             return(
               <div className='shoppingListCard'>
-                <img src={imgPlaceholder}></img>
+                <img src={`data:image/png;base64,${productImage}`}></img>
                 <div className='verticalFlex'>
                   <span> {value.name} </span>
     
@@ -58,6 +71,9 @@ export class ShoppingList extends React.Component<ShoppingListProps, ShoppingLis
         <button onClick={()=>{
           if(user.login && user.password){
             Api.createCommand(this.props.products)
+            this.props.products.map((product) => {
+              this.props.onDelete(product)
+            })
           }else{
             alert("Vous devez vous connecter avant de pouvoir commander.")
           }

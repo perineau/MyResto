@@ -51,7 +51,8 @@ export class Menu extends React.Component<MenuProps,MenuState> {
         name: product.name,
         price: product.price,
         type: product.type,
-        quantity:1
+        quantity:1,
+        image: product.image
       })
     }
 
