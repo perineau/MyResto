@@ -4,6 +4,7 @@ import en.ensiteck.myresto.security.JpaUserDetailService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -19,7 +20,10 @@ import org.springframework.web.filter.CorsFilter;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity
+@EnableGlobalMethodSecurity(
+        prePostEnabled = true,
+        securedEnabled = true,
+        jsr250Enabled = true)
 public class Security {
 
     private JpaUserDetailService jpaUserDetailService;
@@ -33,7 +37,6 @@ public class Security {
         return http.csrf().disable().cors().and().authorizeHttpRequests()
                 .requestMatchers(HttpMethod.GET,"/card").permitAll()
                 .requestMatchers(HttpMethod.POST,"/user").permitAll()
-                .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/error").permitAll()
                 .anyRequest().authenticated()
                 .and()

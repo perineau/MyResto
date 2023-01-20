@@ -6,6 +6,7 @@ import en.ensiteck.myresto.dto.ProductPost;
 import en.ensiteck.myresto.dto.ProductReturn;
 import en.ensiteck.myresto.exception.BadIdException;
 import en.ensiteck.myresto.service.CommandService;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -40,6 +41,12 @@ public class CommandController {
     @DeleteMapping("/{id}")
     public void deleteCommand(@PathVariable("id") Long id) throws BadIdException {
         commandService.deleteCommand(id);
+    }
+
+    @PostMapping("/{id}/send")
+    @RolesAllowed("ROLE_ADMIN")
+    public void sendCommand(@PathVariable("id") Long id) throws BadIdException {
+        commandService.sendCommand(id);
     }
 
     @ExceptionHandler(BadIdException.class)

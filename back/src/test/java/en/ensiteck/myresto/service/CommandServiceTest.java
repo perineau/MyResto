@@ -95,6 +95,21 @@ class CommandServiceTest {
         assertThat(exception.getIds()).containsOnly("100");
     }
 
+    @Test
+    void sendCommandBadId() throws BadIdException {
+        createCommandEntity();
+        var exception = assertThrows(BadIdException.class ,()->commandService.sendCommand(100L));
+        assertThat(exception.getIds()).containsOnly("100");
+    }
+
+    @Test
+    void sendCommand() throws BadIdException {
+        createCommandEntity();
+        commandService.sendCommand(1L);
+        assertThat(commandRepository.findAll().stream().filter(command -> command.getStatus() == CommandStatus.SEND))
+                .hasSize(1);
+    }
+
     private void createCommandEntity() throws BadIdException {
         var command = Stream.of(
                 new ProductPost(1L,1L),

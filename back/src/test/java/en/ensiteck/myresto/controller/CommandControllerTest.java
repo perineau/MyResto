@@ -80,6 +80,23 @@ class CommandControllerTest {
                 .andExpect(status().isOk());
     }
 
+    @Test
+    void sendCommand() throws Exception {
+        createCommandRequest();
+        this.mockMvc.perform(post("/command/1/send").with(httpBasic("admin","admin"))
+                )
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void sendCommandNotAdmin() throws Exception {
+        createCommandRequest();
+        this.mockMvc.perform(post("/command/1/send").with(httpBasic("test","test"))
+                )
+                .andExpect(status().isForbidden());
+    }
+
+
     ResultActions createCommandRequest() throws Exception {
         return this.mockMvc.perform(post("/command").content("""
                         [

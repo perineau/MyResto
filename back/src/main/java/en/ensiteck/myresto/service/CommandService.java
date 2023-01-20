@@ -95,6 +95,16 @@ public class CommandService {
         commandRepository.delete(command.get());
     }
 
+    public void sendCommand(Long id) throws BadIdException {
+        var commandOptional = commandRepository.findById(id);
+        if (commandOptional.isEmpty()){
+            throw new BadIdException(List.of(id.toString()));
+        }
+        var command=commandOptional.get();
+        command.setStatus(CommandStatus.SEND);
+        commandRepository.save(command);
+    }
+
     private User getUser(String userName){
         var user = userRepository.findById(userName);
         if (user.isEmpty()){
