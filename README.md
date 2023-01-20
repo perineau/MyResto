@@ -4,7 +4,7 @@
 - Docker
 
 ## Accès en ligne
-- 
+- Se rendre sur cette URL http://holgar.duckdns.org/
 
 ## Installation en local
 
