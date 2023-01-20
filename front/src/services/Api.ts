@@ -18,7 +18,8 @@ export abstract class Api{
                     id: food.id,
                     name: food.name,
                     price: food.price,
-                    type: type as ProductType
+                    type: type as ProductType,
+                    image: food.image
                 })
             });
         }

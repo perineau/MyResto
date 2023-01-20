@@ -72,9 +72,9 @@ class CommandServiceTest {
         var commandReturn = commandService.getCommand("test");
         assertThat(commandReturn).hasSize(1).usingRecursiveFieldByFieldElementComparatorIgnoringFields("date").contains(
                 new Command(1L, List.of(
-                new ProductReturn(1L, "glace chocolat",2,1L),
-                new ProductReturn(3L, "frite",2.50,1L),
-                new ProductReturn(4L, "salade",1.99,1L)
+                new ProductReturn(1L, "glace chocolat",2,1L, null),
+                new ProductReturn(3L, "frite",2.50,1L, null),
+                new ProductReturn(4L, "salade",1.99,1L, null)
         ), new UserReturn("test","test","test"),CommandStatus.PREPARE,null));
         assertThat(commandReturn.get(0).date()).isCloseTo(Calendar.getInstance().getTime(),100000);
     }

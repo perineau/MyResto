@@ -66,7 +66,7 @@ var navbar = (
         <button id='disconnect' onClick={async () => {
           await Api.disconnect();
           document.location.href = "/"
-    }}>déconnection</button>
+    }}>déconnexion</button>
     </div>
 
   </nav>
