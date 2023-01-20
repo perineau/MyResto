@@ -55,7 +55,9 @@ export class CommandPage extends React.Component<CommandPageProps, CommandPageSt
             {this.state.commands.map((command)=>{
                 if(command.status == commandStatus.PREPARE) return
                 return (
+                  <>
                   <CommandCard commands={command}></CommandCard>
+                  </>
                 )
               })}
             </div>

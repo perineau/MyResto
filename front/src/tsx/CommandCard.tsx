@@ -38,17 +38,15 @@ export class CommandCard extends React.Component<CommandCardProps> {
       {this.props.commands.product.map((product)=>{
         return(
         <>
-              <br/>
               <div>{product.quantity}x {product.name}</div>
-              {this.props.commands.status === "PREPARE" ? 
-                <button onClick={()=> this.setCommandDone(this.props.commands)}>Done</button>
-                : null
-              }
-              <hr/>
-              <br/>
               </>
             )
-          })}
+        })}
+      {this.props.commands.status === "PREPARE" ? 
+        <button onClick={()=> this.setCommandDone(this.props.commands)}>Done</button>
+        : null
+      }
+      <hr/>
           </>
     );
   }

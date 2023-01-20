@@ -33,7 +33,7 @@ export abstract class Api{
         fetch(`${this.url}/user`, {
             method: "POST",
             body: JSON.stringify({
-                login,password,lastname,mail,address,firstname
+                login,password,lastname,email:mail,address,firstname
             }),
             headers: {
                 'Content-Type': "application/json"
