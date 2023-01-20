@@ -1,3 +1,4 @@
+import '../css/CommandPage.css';
 import React from 'react';
 import { Api, getCookie } from '../services/Api';
 import { commandStatus, Product, ProductType } from '../services/type';
@@ -23,39 +24,46 @@ export class CommandPage extends React.Component<CommandPageProps, CommandPageSt
 
   render() {
     return (
-      <div className="commandPage">
-        <div className='flex'>
-          <div className='verticalFlex'>
-            <div className='cmd'>
-              Commande en cours <div className='green'>{this.state.commands.filter((cmd)=>cmd.status==commandStatus.PREPARE).length}</div>
-            </div>
-            <div className='cmds'>
-              {this.state.commands.map((command)=>{
+      <>
+    <div className="commandPage">
+      <div className="section-1">
+        <div className="block-1">
+          <div className="element-1">COMMANDE EN COURS</div>
+          <br />
+          <div className="element-2">{this.state.commands.filter((cmd)=>cmd.status==commandStatus.PREPARE).length}</div>
+        </div>  
+        <br />
+        <div className="part-1">
+          <div className="block-2">
+          {this.state.commands.map((command)=>{
                 if(command.status == commandStatus.SEND) return
                 return (
                   <CommandCard commands={command}></CommandCard>
                 )
               })}
             </div>
+        </div>
+      </div><div className="section-2">
+          <div className="block-3">
+            <div className="element-3">COMMANDE PASSEES</div>
+            <br />
+            <div className="element-4">{this.state.commands.filter((cmd)=>cmd.status==commandStatus.SEND).length}</div>
           </div>
-          <div className='verticalFlex'>
-            <div className='cmd'>
-              Commande passées <div className='red'>{this.state.commands.filter((cmd)=>cmd.status==commandStatus.SEND).length}</div>
-            </div>
-            <div className='cmds'>
-              {this.state.commands.map((command)=>{
+          <br />
+          <div className="part-2">
+            <div className="block-4">
+            {this.state.commands.map((command)=>{
                 if(command.status == commandStatus.PREPARE) return
                 return (
                   <CommandCard commands={command}></CommandCard>
                 )
-            })}
+              })}
             </div>
-          </div>
+            </div>
         </div>
-
-        <div id="chart_div"></div>
-      </div>
-    );
+        </div>
+        <div id="chart_div"></div></>
+    )
   }
 
   componentDidMount() {

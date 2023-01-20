@@ -8,6 +8,7 @@ type CommandCardProps = {
 }
 
 export type Command = {
+    id: number
     product: ProductShopping
     user:{
         login:string,
@@ -26,14 +27,20 @@ export class CommandCard extends React.Component<CommandCardProps> {
 
   render() {
     return (
-      <div className="commandCard">
-        <div>COMMANDE {this.props.commands.user.firstname} {this.props.commands.user.lastname}</div>
-        {this.props.commands.product.map((product)=>{
-            return(
-                <div>{product.quantity}X {product.name}</div>
+      <>
+      <div><strong>COMMANDE n°{this.props.commands.id} {this.props.commands.user.firstname} {this.props.commands.user.lastname}</strong></div>
+      {this.props.commands.product.map((product)=>{
+        return(
+        <>
+              <br/>
+              <div>{product.quantity}x {product.name}</div>
+              <br/>
+              <hr/>
+              <br/>
+              </>
             )
-        })}
-      </div>
+          })}
+          </>
     );
   }
 

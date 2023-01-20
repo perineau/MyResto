@@ -1,0 +1,100 @@
+.commandPage {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #DFD4B4;
+    gap: 25px;
+    font-family: 'Lora', serif;
+}
+
+@media (max-width: 500px) {
+    .commandPage {
+      display: block;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #A9A9A9;
+    border-radius: 10px;
+}
+
+.section-1 {
+    width: 500px;
+    margin-top: 3em;
+}
+
+.section-2 {
+    width: 500px;
+    margin-top: 3em;
+}
+
+.part-1 {
+    max-height: 520px;
+    overflow: auto;
+    background-color: white;
+    border-radius: 0.4em;
+    padding: 2em;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.part-2 {
+    max-height: 520px;
+    overflow: auto;
+    background-color: white;
+    border-radius: 0.4em;
+    padding: 2em;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.block-1 {
+    background-color: white;
+    border-radius: 0.4em;
+    padding: 2em;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.block-2 {
+    padding: 0.5em;
+}
+
+.block-3 {
+    background-color: white;
+    border-radius: 0.4em;
+    padding: 2em;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.block-4 {
+    padding: 0.5em;
+}
+
+.element-1 {
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.element-2 {
+    text-align: center;
+    font-size: 2em;
+    color: green;
+}
+
+.element-3 {
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.element-4 {
+    text-align: center;
+    font-size: 2em;
+    color: red;
+}
