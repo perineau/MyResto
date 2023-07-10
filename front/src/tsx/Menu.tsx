@@ -91,7 +91,7 @@ export class Menu extends React.Component<MenuProps,MenuState> {
 
     this.setState({
       products: this.state.products,
-      productsShopping: productsShopping
+      productsShopping: []
     })
   }
 
